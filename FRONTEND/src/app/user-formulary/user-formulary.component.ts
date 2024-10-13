@@ -45,7 +45,7 @@ export class UserFormularyComponent implements OnInit {
       }),
   
       contact_infos: this.formBuilder.group({
-        phone_number: ['', [Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
+        phone_number: ['', [Validators.required, Validators.min(100000000), Validators.max(9999999999)]],
         email: ['', [Validators.required, Validators.email]],
       }),
   
