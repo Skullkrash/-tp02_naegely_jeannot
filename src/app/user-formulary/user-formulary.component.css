@@ -1,0 +1,11 @@
+.valid-field {
+    color: green;
+}
+
+.invalid-field {
+    color: red;
+}
+
+.hide-data {
+    visibility: hidden;
+}

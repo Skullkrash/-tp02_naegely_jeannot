@@ -1,0 +1,106 @@
+<form [formGroup]="profile_form" (ngSubmit)="onSubmit()">
+    <h1>User Informations</h1>
+
+    <label for="first_name" [ngClass]="profile_form.get('first_name')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">First name : </label>    
+    <input id="first_name" type="text" formControlName="first_name"/>
+    <br>
+    
+    <label for="last_name" [ngClass]="profile_form.get('last_name')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Last name : </label>
+    <input name="last_name" type="text" formControlName="last_name"/>
+    <br>
+    
+    <label for="login" [ngClass]="profile_form.get('login')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Login : </label>
+    <input name="login" type="text" formControlName="login"/>
+    <br>
+    
+
+    <div formGroupName="address">
+        <h2>Address</h2>
+
+        <label for="street" [ngClass]="profile_form.get('address.street')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Street : </label>
+        <input name="street" type="text" formControlName="street"/>
+        <br>
+    
+        <label for="postal_code" [ngClass]="profile_form.get('address.postal_code')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Postal code : </label>
+        <input name="postal_code" type="number" formControlName="postal_code" minlength="5" maxlength="5"/>
+        <br>
+    
+        <label for="city" [ngClass]="profile_form.get('address.city')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">City : </label>
+        <input name="city" type="text" formControlName="city"/>
+        <br>
+    
+        <label for="country" [ngClass]="profile_form.get('address.country')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Country : </label>
+        <input name="country" type="text" formControlName="country"/>
+        <br>
+    </div>
+
+
+    <div formGroupName="contact_infos">
+        <h2>Contact informations</h2>
+
+        <label for="phone_number" [ngClass]="profile_form.get('contact_infos.phone_number')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Phone number : </label>
+        <input name="phone_number" type="number" formControlName="phone_number"/>
+        <br>
+    
+        <label for="email" [ngClass]="profile_form.get('contact_infos.email')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Email : </label>
+        <input name="email" type="email" formControlName="email"/>
+        <br>
+    
+    </div>
+
+
+    <div formGroupName="gender">
+        <h2>Gender</h2>
+
+        <label for="genderM" [ngClass]="profile_form.get('gender.genderM')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">M</label>
+        <input name="genderM" (click)="genderValueChange('M')" type="checkbox" formControlName="genderM"/>
+        <br>
+    
+        <label for="genderF" [ngClass]="profile_form.get('gender.genderF')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">F</label>
+        <input name="genderF" (click)="genderValueChange('F')" type="checkbox" formControlName="genderF"/>
+        <br>
+    </div>
+
+
+    <h2>Password</h2>
+
+    <label for="password" [ngClass]="profile_form.get('password')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Password : </label>
+    <input name="password" type="password" formControlName="password"/>
+    <br>
+    
+    <label for="confirm_password" [ngClass]="profile_form.get('confirm_password')?.status === 'VALID' ? 'valid-field' : 'invalid-field'">Confirm password : </label>
+    <input name="confirm_password" type="password" formControlName="confirm_password"/>
+    <br>
+    
+    <button [type]="'submit'" [disabled]="!profile_form.valid">Submit inputs</button>
+</form>
+
+
+<div [ngClass]="data_resume_visible ? '' : 'hide-data'">
+    <div>
+        First name : {{firstName()}}
+    </div>
+    <div>
+        Last name : {{lastName()}}
+    </div>
+    <div>
+        Login : {{login()}}
+    </div>
+    <div>
+        Address : {{street()}}, {{postalCode()}} {{city()}} - {{country()}}
+    </div>
+    <div>
+        Phone number : {{phoneNumber()}}
+        Email : {{email()}}
+    </div>
+    <div>
+        @if (genderM()) {
+            Gender : M
+        } @else if (genderF()) {
+            Gender : F
+        }
+    </div>
+    <div>
+        Password : {{password()}}
+    </div>
+</div>
